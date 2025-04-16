@@ -99,7 +99,7 @@ else:
 page = st.session_state.page
 
 if page == "Home":
-    st.image(r"C:\Users\Danie\Desktop\run dome logo.png",  use_container_width=True)
+    
 
     st.title("This Week:")
     st.title("The Real-Life Mario Kart Game")
