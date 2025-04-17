@@ -99,8 +99,6 @@ else:
 page = st.session_state.page
 
 if page == "Home":
-   st.image("https://github.com/Daniel-Hanna/Streamlit2/blob/main/run dome logo.png")
-
     st.title("This Week:")
     st.title("The Real-Life Mario Kart Game")
     st.markdown(
