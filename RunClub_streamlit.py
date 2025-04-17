@@ -85,7 +85,7 @@ if theme_choice == "Dark":
     )
 
 # Navigation
-st.sidebar.radio("Select a Page", ["Home", "Leaderboard", "Team Registration"], key="page")
+st.sidebar.radio("Select a Page", ["Home", "Team Registration"], key="page")
 
 st.sidebar.header("Sign-Up Stats 📊")
 if not st.session_state.signup_data.empty:
