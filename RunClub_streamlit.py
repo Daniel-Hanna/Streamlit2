@@ -152,27 +152,6 @@ Stay tuned for updates on race events, tech upgrades, and special beta events!
         )
     st.divider()
 
-elif page == "Leaderboard":
-    st.title("🏆 Leaderboard")
-    st.markdown("Check out how our beta runners rank – times are simulated for now!")
-    
-    if not st.session_state.signup_data.empty:
-        leaderboard = st.session_state.signup_data.sort_values(by="Time", ascending=False).reset_index(drop=True)
-        # Display Top 3 Runners with Medal Icons
-        st.subheader("Top 3 Runners")
-        medals = ['🥇', '🥈', '🥉']
-        top_three = leaderboard.head(3)
-        for idx, row in top_three.iterrows():
-            st.markdown(f"<h3>{medals[idx]} {row['Name']} - Time: {row['Time']}</h3>", unsafe_allow_html=True)
-        st.divider()
-        st.subheader("Full Leaderboard")
-        st.dataframe(leaderboard)
-    else:
-        st.info("No sign-ups available yet. Head back to Home and sign up to appear on the leaderboard!")
-        
-    if st.button("Back to Home"):
-        st.session_state.page = "Home"
-        st.experimental_rerun()
 
 elif page == "Team Registration":
     st.title("👥 Team Registration")
