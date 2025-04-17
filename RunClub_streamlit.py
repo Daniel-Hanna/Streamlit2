@@ -10,9 +10,9 @@ TEAMS_CSV = "teams.csv"
 # --- Sample Data Functions ---
 def sample_signups_df():
     sample_data = pd.DataFrame([
-         {"Name": "Alice", "Email": "alice@example.com", "Age Range": "18–25", "Experience Level": "Intermediate", "Character Theme": "Mario", "Beta Interested": True, "Score": 85},
-         {"Name": "Bob", "Email": "bob@example.com", "Age Range": "26–35", "Experience Level": "Advanced", "Character Theme": "Luigi", "Beta Interested": False, "Score": 70},
-         {"Name": "Charlie", "Email": "charlie@example.com", "Age Range": "18–25", "Experience Level": "Beginner", "Character Theme": "Peach", "Beta Interested": True, "Score": 95}
+         {"Name": "Alice", "Email": "alice@example.com", "Age Range": "18–25", "Experience Level": "Intermediate", "Character Theme": "Mario", "Beta Interested": True, "Time": 5.21},
+         {"Name": "Bob", "Email": "bob@example.com", "Age Range": "26–35", "Experience Level": "Advanced", "Character Theme": "Luigi", "Beta Interested": False, "Time": 5.29},
+         {"Name": "Charlie", "Email": "charlie@example.com", "Age Range": "18–25", "Experience Level": "Beginner", "Character Theme": "Peach", "Beta Interested": True, "Time": 5.31}
     ])
     return sample_data
 
@@ -124,7 +124,7 @@ Whether you're an avid runner or looking to try something new, join our beta and
             submit = st.form_submit_button("Submit")
         
         if submit:
-            new_score = random.randint(0, 100)
+            new_time = random.randint(0, 100)
             new_entry = {
                 "Name": name,
                 "Email": email,
@@ -132,7 +132,7 @@ Whether you're an avid runner or looking to try something new, join our beta and
                 "Experience Level": experience,
                 "Character Theme": character_theme,
                 "Beta Interested": beta_interest,
-                "Score": new_score
+                "Time": new_time
             }
             new_entry_df = pd.DataFrame([new_entry])
             st.session_state.signup_data = pd.concat([st.session_state.signup_data, new_entry_df], ignore_index=True)
@@ -154,16 +154,16 @@ Stay tuned for updates on race events, tech upgrades, and special beta events!
 
 elif page == "Leaderboard":
     st.title("🏆 Leaderboard")
-    st.markdown("Check out how our beta runners rank – scores are simulated for now!")
+    st.markdown("Check out how our beta runners rank – times are simulated for now!")
     
     if not st.session_state.signup_data.empty:
-        leaderboard = st.session_state.signup_data.sort_values(by="Score", ascending=False).reset_index(drop=True)
+        leaderboard = st.session_state.signup_data.sort_values(by="Time", ascending=False).reset_index(drop=True)
         # Display Top 3 Runners with Medal Icons
         st.subheader("Top 3 Runners")
         medals = ['🥇', '🥈', '🥉']
         top_three = leaderboard.head(3)
         for idx, row in top_three.iterrows():
-            st.markdown(f"<h3>{medals[idx]} {row['Name']} - Score: {row['Score']}</h3>", unsafe_allow_html=True)
+            st.markdown(f"<h3>{medals[idx]} {row['Name']} - Time: {row['Time']}</h3>", unsafe_allow_html=True)
         st.divider()
         st.subheader("Full Leaderboard")
         st.dataframe(leaderboard)
